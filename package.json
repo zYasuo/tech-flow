@@ -1,0 +1,47 @@
+{
+    "name": "tech_flow",
+    "version": "1.0.0",
+    "description": "Server application using Express and TypeScript",
+    "main": "src/server.ts",
+    "scripts": {
+        "dev": "nodemon --watch src --exec ts-node src/server.ts",
+        "test": "jest --config jest.config.ts --coverage",
+        "build": "rm -rf build/ && tsc",
+        "start": "node build/server.js"
+    },
+    "author": "Danilo Aguiar",
+    "license": "MIT",
+    "dependencies": {
+        "@types/jsonwebtoken": "^9.0.10",
+        "@types/redis": "^4.0.10",
+        "@types/uuid": "^10.0.0",
+        "bcrypt": "^6.0.0",
+        "dotenv": "^17.2.1",
+        "express": "^5.1.0",
+        "inversify": "^7.7.1",
+        "jsonwebtoken": "^9.0.2",
+        "mysql2": "^3.11.0",
+        "redis": "^5.8.1",
+        "reflect-metadata": "^0.2.2",
+        "sequelize": "^6.37.3",
+        "sequelize-typescript": "^2.1.6",
+        "uuid": "^11.1.0",
+        "zod": "^4.0.17"
+    },
+    "devDependencies": {
+        "@types/bcrypt": "^6.0.0",
+        "@types/express": "^5.0.3",
+        "@types/inversify": "^2.0.32",
+        "@types/jest": "^30.0.0",
+        "@types/node": "^24.1.0",
+        "@types/sequelize": "^4.28.20",
+        "@types/supertest": "^6.0.3",
+        "jest": "^30.0.5",
+        "nodemon": "^3.1.10",
+        "sequelize-cli": "^6.6.2",
+        "supertest": "^7.1.4",
+        "ts-jest": "^29.4.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.8.3"
+    }
+}

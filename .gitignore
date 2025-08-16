@@ -1,0 +1,33 @@
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Environment variables
+.env
+
+# TypeScript build output
+build/
+
+# Test coverage
+coverage/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Runtime data
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# VS Code settings (keep extensions, ignore personal settings)
+.vscode/settings.json
+
+
+# Temporary files
+*.tmp
+*.temp
+
+

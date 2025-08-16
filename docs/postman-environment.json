@@ -1,0 +1,49 @@
+{
+  "id": "express-typescript-starter-env",
+  "name": "Express TypeScript Starter Environment",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001",
+      "description": "Base URL for the API",
+      "enabled": true,
+      "type": "default"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "description": "JWT Access Token (auto-generated after login)",
+      "enabled": true,
+      "type": "secret"
+    },
+    {
+      "key": "refreshToken",
+      "value": "",
+      "description": "JWT Refresh Token (auto-generated after login)",
+      "enabled": true,
+      "type": "secret"
+    },
+    {
+      "key": "projectId",
+      "value": "",
+      "description": "Current project ID (auto-generated after creating project)",
+      "enabled": true,
+      "type": "default"
+    },
+    {
+      "key": "taskId",
+      "value": "",
+      "description": "Current task ID (auto-generated after creating task)",
+      "enabled": true,
+      "type": "default"
+    },
+    {
+      "key": "githubUsername",
+      "value": "seu-username-github",
+      "description": "GitHub username for repository linking",
+      "enabled": true,
+      "type": "default"
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}
