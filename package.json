@@ -1,5 +1,5 @@
 {
-    "name": "tech_flow",
+    "name": "tech-flow",
     "version": "1.0.0",
     "description": "Server application using Express and TypeScript",
     "main": "src/server.ts",

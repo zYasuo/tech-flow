@@ -1,4 +1,4 @@
-# tech_flow
+# tech-flow
 
 ![Node.js](https://img.shields.io/badge/Node.js-v18+-339933?style=flat&logo=node.js&logoColor=white)  
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8+-3178C6?style=flat&logo=typescript&logoColor=white)  
@@ -7,7 +7,7 @@
 ![Redis](https://img.shields.io/badge/Redis-7+-DC382D?style=flat&logo=redis&logoColor=white)  
 ![InversifyJS](https://img.shields.io/badge/InversifyJS-DI-00b5ad?style=flat&logo=inversify&logoColor=white)  
 
-**tech_flow** é um sistema de gerenciamento de projetos e tarefas com **autenticação JWT**, integração com **GitHub** e recursos de cache utilizando **Redis**. Foi desenvolvido com **Express.js**, **TypeScript**, **Sequelize ORM** e **InversifyJS** para injeção de dependência.
+**tech-flow** é um sistema de gerenciamento de projetos e tarefas com **autenticação JWT**, integração com **GitHub** e recursos de cache utilizando **Redis**. Foi desenvolvido com **Express.js**, **TypeScript**, **Sequelize ORM** e **InversifyJS** para injeção de dependência.
 
 ---
 
@@ -92,7 +92,7 @@ NODE_ENV=development
 SERVER_PORT=3001
 
 # Banco de dados
-DB_NAME_SEQUELIZE=tech_flow
+DB_NAME_SEQUELIZE=tech-flow
 DB_USER_SEQUELIZE=root
 DB_PASSWORD_SEQUELIZE=sua_senha
 DB_HOST_SEQUELIZE=localhost
@@ -100,7 +100,7 @@ DB_PORT_SEQUELIZE=3306
 
 # JWT
 JWT_SECRET=seu_jwt_secret
-JWT_ISSUER=tech_flow
+JWT_ISSUER=tech-flow
 JWT_AUDIENCE=api-users
 
 # Redis
