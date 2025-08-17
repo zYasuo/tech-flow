@@ -1,4 +1,4 @@
-import { User } from "../../../../data/models";
+import { User } from "../../../../models";
 import { TCreateUser } from "../../schemas/user-create.schema";
 
 export interface IUserRepository {

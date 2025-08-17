@@ -1,4 +1,4 @@
-import { User } from "../../../../../data/models";
+import { User } from "../../../../../models";
 
 export interface JWTPayload {
     userId: string;

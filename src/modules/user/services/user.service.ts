@@ -4,7 +4,7 @@ import { IUserService } from "./interfaces/user-services.interface";
 import { ErrorFactory } from "../../../common/errors/error-factory";
 import { TCreateUser } from "../schemas";
 import { TOKENS } from "../../../common/tokens/service.tokens";
-import { User } from "../../../data/models";
+import { User } from "../../../models";
 import bcrypt from "bcrypt";
 
 @injectable()

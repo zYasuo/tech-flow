@@ -1,4 +1,4 @@
-import { Task } from "../../../../data/models/Task";
+import { Task } from "../../../../models/entities/Task";
 import { TCreateTask, TUpdateTask } from "../../schemas";
 
 export interface ITaskRepository {

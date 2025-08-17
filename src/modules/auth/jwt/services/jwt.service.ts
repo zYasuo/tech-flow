@@ -7,7 +7,7 @@ import { SERVER } from "../../../../config/config";
 import { TOKENS } from "../../../../common/tokens/service.tokens";
 import jwt from "jsonwebtoken";
 import { ErrorFactory } from "../../../../common/errors/error-factory";
-import { User } from "../../../../data/models";
+import { User } from "../../../../models";
 
 @injectable()
 export class JWTService implements IJWTService {

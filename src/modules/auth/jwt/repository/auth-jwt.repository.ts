@@ -1,6 +1,6 @@
 import { ICreateTokenData, ITokenRepository, TokenWithUser } from "./interface/auth-jwt-repository.interface";
 import { ErrorFactory } from "../../../../common/errors/error-factory";
-import { Token, User } from "../../../../data/models";
+import { Token, User } from "../../../../models";
 import { injectable } from "inversify";
 import { Op } from "sequelize";
 

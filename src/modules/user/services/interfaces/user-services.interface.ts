@@ -1,5 +1,5 @@
 import { TCreateUser } from "../../schemas";
-import { User } from "../../../../data/models";
+import { User } from "../../../../models";
 
 export interface IUserService {
     createUser(data: TCreateUser): Promise<User>;

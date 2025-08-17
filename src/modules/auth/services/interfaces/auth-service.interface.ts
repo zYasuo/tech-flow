@@ -1,7 +1,7 @@
 
 import { TUserSignin } from "../../schemas";
 import { TCreateUser } from "../../../user/schemas";
-import { User } from "../../../../data/models";
+import { User } from "../../../../models";
 
 export interface IAuthService {
     register(data: TCreateUser): Promise<{

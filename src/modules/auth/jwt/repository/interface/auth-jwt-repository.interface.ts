@@ -1,5 +1,5 @@
-import { Token } from "../../../../../data/models/Token";
-import { User } from "../../../../../data/models/User";
+import { Token } from "../../../../../models/entities/Token";
+import { User } from "../../../../../models/entities/User";
 
 export interface ICreateTokenData {
     userId: string;

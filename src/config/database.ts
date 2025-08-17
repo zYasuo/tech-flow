@@ -1,4 +1,4 @@
-import { User, Token, Project, Task, GithubRepository } from "../data/models";
+import { User, Token, Project, Task, GithubRepository } from "../models";
 import { Sequelize } from "sequelize-typescript";
 import { SERVER } from "./config";
 

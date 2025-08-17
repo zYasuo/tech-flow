@@ -1,4 +1,4 @@
-import { GithubRepository, Project } from "../../../data/models";
+import { GithubRepository, Project } from "../../../models";
 import type { IProjectRepository } from "../repositories/interfaces/project-repository.interface";
 import { injectable, inject } from "inversify";
 import { IProjectService } from "./interfaces/project.interface";

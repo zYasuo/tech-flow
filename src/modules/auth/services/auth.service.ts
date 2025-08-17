@@ -6,7 +6,7 @@ import type { IJWTService } from "../jwt/services/jwt.service";
 import { TCreateUser } from "../../user/schemas";
 import { TUserSignin } from "../schemas";
 import { TOKENS } from "../../../common/tokens/service.tokens";
-import { User } from "../../../data/models";
+import { User } from "../../../models";
 
 @injectable()
 export class AuthService implements IAuthService {

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { SCreateProject, SUpdateProject } from "../schemas";
 import { injectable, inject } from "inversify";
-import { GithubRepository } from "../../../data/models";
+import { GithubRepository } from "../../../models";
 import { IProjectService } from "../services/interfaces/project.interface";
 import { authMiddleware } from "../../../middleware/auth-validation.middlaware";
 import { ErrorHandler } from "../../../common/errors/error-handler";

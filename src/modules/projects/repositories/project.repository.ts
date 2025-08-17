@@ -1,10 +1,10 @@
 import { IGitHubRepositoryProcessed } from "../../github/services/interfaces/github-services.interface";
 import { IProjectRepository } from "./interfaces/project-repository.interface";
-import { GithubRepository } from "../../../data/models";
+import { GithubRepository } from "../../../models";
 import { TCreateProject } from "../schemas";
 import { ErrorFactory } from "../../../common/errors/error-factory";
 import { injectable } from "inversify";
-import { Project } from "../../../data/models";
+import { Project } from "../../../models";
 
 @injectable()
 export class ProjectRepository implements IProjectRepository {

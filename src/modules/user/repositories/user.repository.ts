@@ -2,7 +2,7 @@ import { IUserRepository } from "./interfaces/user-repository.interface";
 import { ErrorFactory } from "../../../common/errors/error-factory";
 import { TCreateUser } from "../schemas/user-create.schema";
 import { injectable } from "inversify";
-import { User } from "../../../data/models";
+import { User } from "../../../models";
 
 @injectable()
 export class UserRepository implements IUserRepository {

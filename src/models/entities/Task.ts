@@ -10,7 +10,7 @@ import {
 } from 'sequelize-typescript';
 import { User } from './User';
 import { Project } from './Project';
-import { TaskStatus, TaskPriority } from './enums';
+import { TaskStatus, TaskPriority } from '../../models/enum/enums';
 
 @Table({
     tableName: 'tasks',

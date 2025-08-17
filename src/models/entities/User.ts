@@ -1,4 +1,4 @@
-import { Table, Column, Model, DataType, PrimaryKey, Default, CreatedAt, UpdatedAt, Unique, HasMany } from "sequelize-typescript";
+import { Table, Column, Model, DataType, PrimaryKey, Default, Unique, HasMany } from "sequelize-typescript";
 import { Token } from "./Token";
 import { Project } from "./Project";
 import { Task } from "./Task";

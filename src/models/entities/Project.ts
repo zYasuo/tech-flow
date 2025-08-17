@@ -1,7 +1,7 @@
 import { Table, Column, Model, DataType, PrimaryKey, Default, CreatedAt, UpdatedAt, ForeignKey, BelongsTo, HasMany } from "sequelize-typescript";
 import { User } from "./User";
 import { Task } from "./Task";
-import { GithubRepository } from "./GithubRepository";
+import { GithubRepository } from "../../models/entities/GithubRepository";
 
 @Table({
     tableName: "projects",

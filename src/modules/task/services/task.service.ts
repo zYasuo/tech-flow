@@ -5,7 +5,7 @@ import { IProjectService } from "../../projects/services/interfaces/project.inte
 import { ErrorFactory } from "../../../common/errors/error-factory";
 import { TUpdateTask } from "../schemas";
 import { TOKENS } from "../../../common/tokens/service.tokens";
-import { Task } from "../../../data/models";
+import { Task } from "../../../models";
 
 @injectable()
 export class TaskService implements ITaskService {

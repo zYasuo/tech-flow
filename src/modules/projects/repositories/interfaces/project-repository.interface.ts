@@ -1,4 +1,4 @@
-import { GithubRepository, Project } from "../../../../data/models";
+import { GithubRepository, Project } from "../../../../models";
 import { IGitHubRepositoryProcessed } from "../../../github/services/interfaces/github-services.interface";
 import { TCreateProject } from "../../schemas";
 

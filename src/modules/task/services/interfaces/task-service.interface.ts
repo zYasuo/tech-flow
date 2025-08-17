@@ -1,5 +1,5 @@
 import { TCreateTask, TUpdateTask } from "../../schemas";
-import { Task } from "../../../../data/models";
+import { Task } from "../../../../models";
 
 export type TCreateTaskServiceData = Omit<TCreateTask, "userId">;
 

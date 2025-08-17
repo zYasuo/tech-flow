@@ -2,7 +2,7 @@ import { TCreateTask, TUpdateTask } from "../schemas";
 import { injectable } from "inversify";
 import { ITaskRepository } from "./interface/task-repository.interface";
 import { ErrorFactory } from "../../../common/errors/error-factory";
-import { Task } from "../../../data/models";
+import { Task } from "../../../models";
 
 @injectable()
 export class TaskRepository implements ITaskRepository {

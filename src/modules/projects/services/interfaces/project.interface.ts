@@ -1,4 +1,4 @@
-import { GithubRepository, Project } from "../../../../data/models";
+import { GithubRepository, Project } from "../../../../models";
 import { TCreateProject } from "../../schemas/create-project.schema";
 import { TUpdateProject } from "../../schemas/update-project.schema";
 
