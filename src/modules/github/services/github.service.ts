@@ -25,7 +25,7 @@ export class GitHubService implements IGitHubService {
             const response = await fetch(`${this.BASE_URL}/users/${username}/repos?sort=updated&direction=desc&per_page=${this.RECENT_REPOS_LIMIT}`, {
                 headers: {
                     Accept: "application/vnd.github.v3+json",
-                    "User-Agent": "Express-TypeScript-Starter"
+                    "User-Agent": "tech-flow"
                 }
             });
 

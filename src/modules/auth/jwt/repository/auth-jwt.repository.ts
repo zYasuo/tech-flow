@@ -9,9 +9,9 @@ export class TokenRepository implements ITokenRepository {
     async create(data: ICreateTokenData): Promise<Token> {
         try {
             return await Token.create({
-                refreshToken: data.refresh_token,
-                expiresAt: data.expires_at,
-                userId: data.user_id
+                refreshToken: data.refreshToken,
+                expiresAt: data.expiresAt,
+                userId: data.userId
             });
         } catch (error) {
             throw ErrorFactory.databaseError("create token", { originalError: error });

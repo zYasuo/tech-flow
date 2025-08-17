@@ -1,0 +1,98 @@
+version: '3.8'
+
+services:
+  # API Node.js
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tech-flow-api
+    ports:
+      - "3002:3001"
+    environment:
+      - NODE_ENV=production
+      - SERVER_HOSTNAME=0.0.0.0
+      - SERVER_PORT=3001
+      - JWT_SECRET=your-super-secret-jwt-key-change-in-production
+      - JWT_ISSUER=tech-flow-api
+      - JWT_AUDIENCE=api-users
+      # Database
+      - DB_NAME_SEQUELIZE=tech_flow
+      - DB_USER_SEQUELIZE=tech_flow_user
+      - DB_PASSWORD_SEQUELIZE=tech_flow_password
+      - DB_HOST_SEQUELIZE=mysql
+      - DB_PORT_SEQUELIZE=3306
+      # Redis
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_USERNAME=default
+      - REDIS_PASSWORD=
+      # GitHub
+      - GIT_HUB_BASE_URL=https://api.github.com
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - tech-flow-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3001/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: tech-flow-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=tech_flow
+      - MYSQL_USER=tech_flow_user
+      - MYSQL_PASSWORD=tech_flow_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./src/data/migrations:/docker-entrypoint-initdb.d
+    networks:
+      - tech-flow-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    command: --default-authentication-plugin=mysql_native_password
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: tech-flow-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - tech-flow-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  mysql_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  tech-flow-network:
+    driver: bridge

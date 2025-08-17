@@ -44,15 +44,16 @@ export class UserRepository implements IUserRepository {
 
     async update(id: string, data: Partial<User>): Promise<User> {
         try {
-            const [affectedRows, [updatedUser]] = await User.update(data, {
-                where: { id },
-                returning: true
+            const [affectedRows] = await User.update(data, {
+                where: { id }
             });
 
             if (affectedRows === 0) {
                 throw ErrorFactory.userNotFound(id);
             }
 
+            const updatedUser = await User.findByPk(id);
+            if (!updatedUser) throw ErrorFactory.userNotFound(id);
             return updatedUser;
         } catch (error) {
             if (error && typeof error === "object" && "name" in error) {

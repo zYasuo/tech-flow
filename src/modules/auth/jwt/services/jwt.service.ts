@@ -12,11 +12,11 @@ import { User } from "../../../../data/models";
 @injectable()
 export class JWTService implements IJWTService {
     constructor(
-        @inject(TOKENS.ITokenRepository) private _tokenRepository: ITokenRepository,
-        @inject(TOKENS.IUserRepository) private _userRepository: IUserRepository
+        @inject(TOKENS.ITokenRepository) private tokenRepository: ITokenRepository,
+        @inject(TOKENS.IUserRepository) private userRepository: IUserRepository
     ) {}
 
-    async generateToken(user: User): Promise<{ accessToken: string; refreshToken: string }> {
+    async generateToken(user: User): Promise<{ access_token: string; refresh_token: string }> {
         const payload: Omit<JWTPayload, "iat" | "exp"> = {
             userId: user.id,
             email: user.email
@@ -31,17 +31,17 @@ export class JWTService implements IJWTService {
         const refreshTokenValue = uuidv4();
         const expiresAt = new Date(Date.now() + SERVER.JWT_CONFIG.refreshTokenExpiry);
 
-        await this._tokenRepository.deleteExpiredTokens(user.id);
+        await this.tokenRepository.deleteExpiredTokens(user.id);
 
-        await this._tokenRepository.create({
-            user_id: user.id,
-            refresh_token: refreshTokenValue,
-            expires_at: expiresAt
+        await this.tokenRepository.create({
+            userId: user.id,
+            refreshToken: refreshTokenValue,
+            expiresAt: expiresAt
         });
 
         return {
-            accessToken,
-            refreshToken: refreshTokenValue
+            access_token: accessToken,
+            refresh_token: refreshTokenValue
         };
     }
 
@@ -52,7 +52,7 @@ export class JWTService implements IJWTService {
                 audience: SERVER.JWT_CONFIG.audience
             }) as JWTPayload;
 
-            const user = await this._userRepository.findById(decoded.userId);
+            const user = await this.userRepository.findById(decoded.userId);
             return user;
         } catch (error) {
             switch (true) {
@@ -68,23 +68,23 @@ export class JWTService implements IJWTService {
         }
     }
 
-    async refreshToken(refreshToken: string): Promise<{ accessToken: string; refreshToken: string } | null> {
-        const tokenRecord = await this._tokenRepository.findByRefreshToken(refreshToken);
+    async refreshToken(refreshToken: string): Promise<{ access_token: string; refresh_token: string } | null> {
+        const tokenRecord = await this.tokenRepository.findByRefreshToken(refreshToken);
 
         if (!tokenRecord) {
             return null;
         }
-        await this._tokenRepository.deleteByRefreshToken(refreshToken);
+        await this.tokenRepository.deleteByRefreshToken(refreshToken);
 
         return this.generateToken(tokenRecord.user);
     }
 
     async revokeToken(refreshToken: string): Promise<boolean> {
-        return this._tokenRepository.deleteByRefreshToken(refreshToken);
+        return this.tokenRepository.deleteByRefreshToken(refreshToken);
     }
 
     async revokeAllUserTokens(userId: string): Promise<boolean> {
-        return this._tokenRepository.deleteAllByUserId(userId);
+        return this.tokenRepository.deleteAllByUserId(userId);
     }
 }
 

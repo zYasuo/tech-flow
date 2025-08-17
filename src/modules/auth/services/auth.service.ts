@@ -10,14 +10,14 @@ import { User } from "../../../data/models";
 
 @injectable()
 export class AuthService implements IAuthService {
-    constructor(@inject(TOKENS.IUserService) private _userService: IUserService, @inject(TOKENS.IJWTService) private _jwtService: IJWTService) {}
+    constructor(@inject(TOKENS.IUserService) private userService: IUserService, @inject(TOKENS.IJWTService) private jwtService: IJWTService) {}
 
     async register(data: TCreateUser): Promise<{
         user: Omit<User, "password">;
-        tokens: { accessToken: string; refreshToken: string };
+        tokens: { access_token: string; refresh_token: string };
     }> {
-        const user = await this._userService.createUser(data);
-        const tokens = await this._jwtService.generateToken(user);
+        const user = await this.userService.createUser(data);
+        const tokens = await this.jwtService.generateToken(user);
 
         const userPlain = user.toJSON();
         const { password, ...userWithoutPassword } = userPlain;
@@ -30,10 +30,10 @@ export class AuthService implements IAuthService {
 
     async signIn(data: TUserSignin): Promise<{
         user: Omit<User, "password">;
-        tokens: { accessToken: string; refreshToken: string };
+        tokens: { access_token: string; refresh_token: string };
     }> {
         const user = await this.validateLogin(data);
-        const tokens = await this._jwtService.generateToken(user);
+        const tokens = await this.jwtService.generateToken(user);
 
         const userPlain = user.toJSON();
         const { password, ...userWithoutPassword } = userPlain;
@@ -44,8 +44,8 @@ export class AuthService implements IAuthService {
         };
     }
 
-    async refreshToken(refreshToken: string): Promise<{ accessToken: string; refreshToken: string } | null> {
-        const tokens = await this._jwtService.refreshToken(refreshToken);
+    async refreshToken(refreshToken: string): Promise<{ access_token: string; refresh_token: string } | null> {
+        const tokens = await this.jwtService.refreshToken(refreshToken);
 
         if (!tokens) {
             throw ErrorFactory.invalidToken();
@@ -55,12 +55,12 @@ export class AuthService implements IAuthService {
     }
 
     private async validateLogin(data: TUserSignin): Promise<User> {
-        const user = await this._userService.findUserByEmail(data.email);
+        const user = await this.userService.findUserByEmail(data.email);
         if (!user) {
             throw ErrorFactory.invalidCredentials();
         }
 
-        const isPasswordValid = await this._userService.isPasswordValid(data.password, user.password);
+        const isPasswordValid = await this.userService.isPasswordValid(data.password, user.password);
         if (!isPasswordValid) {
             throw ErrorFactory.invalidCredentials();
         }

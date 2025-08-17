@@ -8,9 +8,9 @@ export interface JWTPayload {
 }
 
 export interface IJWTService {
-    generateToken(user: User): Promise<{ accessToken: string; refreshToken: string }>;
+    generateToken(user: User): Promise<{ access_token: string; refresh_token: string }>;
     verifyToken(token: string): Promise<User | null>;
-    refreshToken(refreshToken: string): Promise<{ accessToken: string; refreshToken: string } | null>;
+    refreshToken(refreshToken: string): Promise<{ access_token: string; refresh_token: string } | null>;
     revokeToken(refreshToken: string): Promise<boolean>;
     revokeAllUserTokens(userId: string): Promise<boolean>;
 }

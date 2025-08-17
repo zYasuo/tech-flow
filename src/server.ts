@@ -9,6 +9,7 @@ import { NotFoundRouteHandler } from "./middleware/not-found-route.middleware";
 import AuthController from "./modules/auth/controller/auth.controller";
 import ProjectController from "./modules/projects/controller/project.controller";
 import TaskController from "./modules/task/controller/task.controller";
+import { HealthController } from "./modules/health/controller/health.controller";
 
 import { container } from "./common/di/inversify.di";
 import { TOKENS } from "./common/tokens/service.tokens";
@@ -25,8 +26,9 @@ export const MainServer = () => {
     const authController = container.get<AuthController>(TOKENS.AuthController);
     const projectController = container.get<ProjectController>(TOKENS.ProjectController);
     const taskController = container.get<TaskController>(TOKENS.TaskController);
+    const healthController = container.get<HealthController>(TOKENS.HealthController);
 
-    RegisterControllers(app, [authController, projectController, taskController]);
+    RegisterControllers(app, [authController, projectController, taskController, healthController]);
 
     app.use(NotFoundRouteHandler);
 

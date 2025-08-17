@@ -5,23 +5,20 @@ import {
     DataType,
     PrimaryKey,
     Default,
-    CreatedAt,
-    UpdatedAt,
     ForeignKey,
     BelongsTo,
-    Index,
 } from 'sequelize-typescript';
 import { User } from './User';
 
 @Table({
-    tableName: 'token',
+    tableName: 'tokens',
     timestamps: true,
     createdAt: 'created_at',
     updatedAt: 'updated_at',
     indexes: [
         {
             name: 'token_user_id_index',
-            fields: ['user_id'],
+            fields: ['userId'],
         },
     ],
 })
@@ -53,19 +50,7 @@ export class Token extends Model {
     })
     expiresAt!: Date | null;
 
-    @CreatedAt
-    @Column({
-        type: DataType.DATE,
-        field: 'created_at',
-    })
-    createdAt!: Date;
 
-    @UpdatedAt
-    @Column({
-        type: DataType.DATE,
-        field: 'updated_at',
-    })
-    updatedAt!: Date;
 
     @BelongsTo(() => User, { onDelete: 'CASCADE' })
     user!: User;

@@ -38,6 +38,7 @@ import { IUserService } from "../../modules/user/services/interfaces/user-servic
 import AuthController from "../../modules/auth/controller/auth.controller";
 import ProjectController from "../../modules/projects/controller/project.controller";
 import TaskController from "../../modules/task/controller/task.controller";
+import { HealthController } from "../../modules/health/controller/health.controller";
 import { UserService } from "../../modules/user/services/user.service";
 
 const container = new Container();
@@ -68,5 +69,6 @@ container.bind<ITaskService>(TOKENS.ITaskService).to(TaskService).inSingletonSco
 container.bind<AuthController>(TOKENS.AuthController).to(AuthController);
 container.bind<ProjectController>(TOKENS.ProjectController).to(ProjectController);
 container.bind<TaskController>(TOKENS.TaskController).to(TaskController);
+container.bind<HealthController>(TOKENS.HealthController).to(HealthController);
 
 export { container };

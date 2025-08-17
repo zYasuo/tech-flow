@@ -4,9 +4,7 @@ import {
     Model,
     DataType,
     PrimaryKey,
-    Default,
-    CreatedAt,
-    UpdatedAt,
+    Default,        
     ForeignKey,
     BelongsTo,
     Unique,
@@ -16,8 +14,8 @@ import { Project } from './Project';
 @Table({
     tableName: 'github_repositories',
     timestamps: true,
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
 })
 export class GithubRepository extends Model {
     @PrimaryKey
@@ -33,6 +31,7 @@ export class GithubRepository extends Model {
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
+        field: 'github_id',
     })
     githubId!: number;
 
@@ -45,6 +44,7 @@ export class GithubRepository extends Model {
     @Column({
         type: DataType.STRING,
         allowNull: false,
+        field: 'full_name',
     })
     fullName!: string;
 
@@ -57,6 +57,7 @@ export class GithubRepository extends Model {
     @Column({
         type: DataType.STRING,
         allowNull: false,
+        field: 'html_url',
     })
     htmlUrl!: string;
 
@@ -77,16 +78,9 @@ export class GithubRepository extends Model {
     @Column({
         type: DataType.STRING,
         allowNull: false,
+        field: 'project_id',
     })
     projectId!: string;
-
-    @CreatedAt
-    @Column(DataType.DATE)
-    createdAt!: Date;
-
-    @UpdatedAt
-    @Column(DataType.DATE)
-    updatedAt!: Date;
 
     @BelongsTo(() => Project)
     project!: Project;

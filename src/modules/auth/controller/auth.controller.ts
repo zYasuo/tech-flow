@@ -14,13 +14,13 @@ import { Routes } from "../../../common/decorators/routes";
 @Controller("auth")
 @injectable()
 class AuthController {
-    constructor(@inject(TOKENS.IAuthService) private _authService: IAuthService) {}
+    constructor(@inject(TOKENS.IAuthService) private authService: IAuthService) {}
 
     @Routes("post", "/register")
     async createUser(req: Request, res: Response, next: NextFunction) {
         try {
             const validatedData = SCreateUser.parse(req.body);
-            const result = await this._authService.register(validatedData);
+            const result = await this.authService.register(validatedData);
 
             return ApiResponse.created(res, result, "User created successfully");
         } catch (error) {
@@ -45,7 +45,7 @@ class AuthController {
     async login(req: Request, res: Response) {
         try {
             const validatedData = SSignIn.parse(req.body);
-            const result = await this._authService.signIn(validatedData);
+            const result = await this.authService.signIn(validatedData);
 
             return ApiResponse.success(res, result, "User logged in successfully");
         } catch (error) {

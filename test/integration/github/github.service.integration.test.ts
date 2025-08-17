@@ -100,7 +100,7 @@ describe("GitHubService Integration", () => {
                 expect(fetch).toHaveBeenCalledWith("https://api.github.com/users/testuser/repos?sort=updated&direction=desc&per_page=5", {
                     headers: {
                         Accept: "application/vnd.github.v3+json",
-                        "User-Agent": "Express-TypeScript-Starter"
+                        "User-Agent": "tech-flow"
                     }
                 });
             }, 15000);

@@ -6,13 +6,12 @@ import { GithubRepository } from "./GithubRepository";
 @Table({
     tableName: "projects",
     timestamps: true,
-    createdAt: "createdAt",
-    updatedAt: "updatedAt"
+    createdAt: "created_at",
+    updatedAt: "updated_at"
 })
 export class Project extends Model {
     @PrimaryKey
     @Default(() => {
-        // Simples gerador de CUID usando timestamp + random
         const timestamp = Date.now().toString(36);
         const randomPart = Math.random().toString(36).substring(2, 8);
         return `c${timestamp}${randomPart}`;
@@ -35,17 +34,10 @@ export class Project extends Model {
     @ForeignKey(() => User)
     @Column({
         type: DataType.UUID,
-        allowNull: false
+        allowNull: false,
+        field: 'user_id'
     })
     userId!: string;
-
-    @CreatedAt
-    @Column(DataType.DATE)
-    createdAt!: Date;
-
-    @UpdatedAt
-    @Column(DataType.DATE)
-    updatedAt!: Date;
 
     @BelongsTo(() => User)
     user!: User;

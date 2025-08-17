@@ -7,7 +7,15 @@
         "dev": "nodemon --watch src --exec ts-node src/server.ts",
         "test": "jest --config jest.config.ts --coverage",
         "build": "rm -rf build/ && tsc",
-        "start": "node build/server.js"
+        "start": "node build/server.js",
+        "docker:start": "powershell -ExecutionPolicy Bypass -File scripts/start-docker.ps1",
+        "docker:dev": "powershell -ExecutionPolicy Bypass -File scripts/dev.ps1",
+        "docker:prod": "powershell -ExecutionPolicy Bypass -File scripts/prod.ps1",
+        "docker:redis": "powershell -ExecutionPolicy Bypass -File scripts/redis-cli.ps1",
+        "docker:clean": "powershell -ExecutionPolicy Bypass -File scripts/clean.ps1",
+        "docker:health": "curl -X GET http://localhost:3002/api/v1/health",
+        "docker:up": "docker-compose up -d",
+        "docker:down": "docker-compose down"
     },
     "author": "Danilo Aguiar",
     "license": "MIT",

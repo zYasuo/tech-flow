@@ -5,11 +5,8 @@ import {
     DataType,
     PrimaryKey,
     Default,
-    CreatedAt,
-    UpdatedAt,
     ForeignKey,
     BelongsTo,
-    Index,
 } from 'sequelize-typescript';
 import { User } from './User';
 import { Project } from './Project';
@@ -18,8 +15,8 @@ import { TaskStatus, TaskPriority } from './enums';
 @Table({
     tableName: 'tasks',
     timestamps: true,
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
     indexes: [
         {
             name: 'task_project_id_index',
@@ -34,7 +31,6 @@ import { TaskStatus, TaskPriority } from './enums';
 export class Task extends Model {
     @PrimaryKey
     @Default(() => {
-        // Simples gerador de CUID usando timestamp + random
         const timestamp = Date.now().toString(36);
         const randomPart = Math.random().toString(36).substring(2, 8);
         return `c${timestamp}${randomPart}`;
@@ -72,6 +68,7 @@ export class Task extends Model {
     @Column({
         type: DataType.STRING,
         allowNull: false,
+        field: 'project_id',
     })
     projectId!: string;
 
@@ -79,16 +76,9 @@ export class Task extends Model {
     @Column({
         type: DataType.UUID,
         allowNull: false,
+        field: 'user_id',
     })
     userId!: string;
-
-    @CreatedAt
-    @Column(DataType.DATE)
-    createdAt!: Date;
-
-    @UpdatedAt
-    @Column(DataType.DATE)
-    updatedAt!: Date;
 
     @BelongsTo(() => Project, { onDelete: 'CASCADE' })
     project!: Project;

@@ -4,7 +4,7 @@ import { Project } from "./Project";
 import { Task } from "./Task";
 
 @Table({
-    tableName: "user",
+    tableName: "users",
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at"
@@ -33,20 +33,6 @@ export class User extends Model {
         allowNull: false
     })
     password!: string;
-
-    @CreatedAt
-    @Column({
-        type: DataType.DATE,
-        field: "created_at"
-    })
-    createdAt!: Date;
-
-    @UpdatedAt
-    @Column({
-        type: DataType.DATE,
-        field: "updated_at"
-    })
-    updatedAt!: Date;
 
     @HasMany(() => Token)
     tokens!: Token[];

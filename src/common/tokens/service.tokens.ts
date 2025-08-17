@@ -16,5 +16,6 @@ export const TOKENS = {
 
     AuthController: Symbol("AuthController"),
     ProjectController: Symbol("ProjectController"),
-    TaskController: Symbol("TaskController")
+    TaskController: Symbol("TaskController"),
+    HealthController: Symbol("HealthController")
 } as const;

@@ -74,8 +74,8 @@ src
 
 ### 1. Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/express-typescript-starter.git
-cd express-typescript-starter
+git clone https://github.com/zYasuo/tech-flow.git
+cd tech-flow
 ```
 
 ### 2. Instale as dependências
@@ -110,39 +110,89 @@ REDIS_HOST=localhost
 REDIS_PORT=6379
 ```
 
-### 4. Execute as migrations (opcional, se usar SQL/Sequelize-CLI)
+### 4. Rodando a aplicação
+
+#### 🐳 **Com Docker (Recomendado)**
+
+Para Windows:
+```powershell
+# Iniciar Docker Desktop
+npm run docker:start
+
+# Ambiente de desenvolvimento
+npm run docker:dev
+
+# Ambiente de produção
+npm run docker:prod
+```
+
+Para Linux/Mac:
+```bash
+# Iniciar containers
+docker-compose up -d
+
+# Ver logs
+docker-compose logs -f
+```
+
+#### 💻 **Desenvolvimento Local**
+
+Execute as migrations (opcional, se usar SQL/Sequelize-CLI):
 ```bash
 npx sequelize-cli db:migrate
 ```
 
-### 5. Rodando a aplicação
-
-#### Modo desenvolvimento (com **hot reload**)
+Modo desenvolvimento (com **hot reload**):
 ```bash
 npm run dev
 ```
 
-#### Rodar os testes automatizados
+Rodar os testes automatizados:
 ```bash
 npm test
 ```
 
-#### Gerar build de produção
+Gerar build de produção:
 ```bash
 npm run build
 ```
 
-#### Executar em produção
+Executar em produção:
 ```bash
 npm start
 ```
 
 > Após iniciar, a API estará disponível em:  
 👉 `http://localhost:3001`  
+👉 Health Check: `http://localhost:3001/health`
+
+---
+
+## 🐳 Comandos Docker
+
+### Windows (PowerShell)
+| Comando | Descrição |
+|---------|-----------|
+| `npm run docker:start` | Inicia o Docker Desktop |
+| `npm run docker:dev` | Ambiente de desenvolvimento (MySQL + Redis + API local) |
+| `npm run docker:prod` | Ambiente de produção completo |
+| `npm run docker:redis` | Acessa o Redis CLI |
+| `npm run docker:clean` | Limpa completamente o ambiente |
+| `npm run docker:health` | Testa o health check da API |
+| `npm run docker:up` | Inicia containers |
+| `npm run docker:down` | Para containers |
+
+### Linux/Mac
+| Comando | Descrição |
+|---------|-----------|
+| `docker-compose up -d` | Inicia todos os serviços |
+| `docker-compose down` | Para todos os serviços |
+| `docker-compose logs -f` | Visualiza logs |
+| `docker-compose restart` | Reinicia serviços |
 
 ---
 
 ## 📝 Autor
 
 **Danilo Aguiar**  
-Desenvolvedor Full Stack • Node.js | React | .NET Core | TypeScript  
+Desenvolvedor Full Stack • Node.js | React |  TypeScript  
