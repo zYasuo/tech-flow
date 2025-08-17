@@ -32,7 +32,7 @@ export class TaskRepository implements ITaskRepository {
         try {
             return await Task.findAll({
                 where: { projectId },
-                order: [['createdAt', 'DESC']]
+                order: [["createdAt", "DESC"]]
             });
         } catch (error) {
             throw ErrorFactory.databaseError("find tasks", { originalError: error });
@@ -43,17 +43,22 @@ export class TaskRepository implements ITaskRepository {
         try {
             const updateData = Object.fromEntries(Object.entries(data).filter(([_, value]) => value !== undefined));
 
-            const [affectedRows, [updatedTask]] = await Task.update({
-                ...updateData,
-                updatedAt: new Date()
-            }, {
-                where: { id },
-                returning: true
-            });
+            const [affectedRows] = await Task.update(
+                {
+                    ...updateData,
+                    updatedAt: new Date()
+                },
+                {
+                    where: { id }
+                }
+            );
 
             if (affectedRows === 0) {
                 throw ErrorFactory.notFound("Task", id);
             }
+
+            const updatedTask = await Task.findByPk(id);
+            if (!updatedTask) throw ErrorFactory.notFound("Task", id);
 
             return updatedTask;
         } catch (error) {

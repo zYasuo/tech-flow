@@ -49,7 +49,6 @@ describe("ProjectService Integration", () => {
     });
 
     it("should update a project", async () => {
-        // Verificar se o projeto existe antes de atualizar
         const existingProject = await projectService.findById(createdProjectId);
         expect(existingProject).toBeDefined();
         expect(existingProject!.id).toBe(createdProjectId);
@@ -72,15 +71,11 @@ describe("ProjectService Integration", () => {
     });
 
     it("should throw error when updating non-existent project", async () => {
-        await expect(
-            projectService.updateProject("non-existent-id", { name: "X", description: "Y" })
-        ).rejects.toThrow();
+        await expect(projectService.updateProject("non-existent-id", { name: "X", description: "Y" })).rejects.toThrow();
     });
 
     it("should throw error when deleting non-existent project", async () => {
-        await expect(
-            projectService.deleteProject("non-existent-id")
-        ).rejects.toThrow();
+        await expect(projectService.deleteProject("non-existent-id")).rejects.toThrow();
     });
 
     it("should delete a project", async () => {
